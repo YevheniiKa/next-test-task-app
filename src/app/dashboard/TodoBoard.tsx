@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
-import { Todo } from "./Todo";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Task } from "@/types/Task";
+import Todo from "./Todo";
+import { Loader } from "@/components/UI/shadcn-io/ai/loader";
 
 const fetchTasks = async (): Promise<Task[]> => {
   const res = await fetch(
@@ -13,7 +14,7 @@ const fetchTasks = async (): Promise<Task[]> => {
   return res.json();
 };
 
-export const TaskBoard = () => {
+export default function TodoBoard() {
   const {
     data: tasks,
     isLoading,
@@ -23,7 +24,6 @@ export const TaskBoard = () => {
     queryFn: fetchTasks,
   });
 
-  if (isLoading) return <p>Loading tasks...</p>;
   if (isError) return <p>Error loading tasks</p>;
 
   const statuses: { id: Task["status"]; label: string }[] = [
@@ -34,7 +34,7 @@ export const TaskBoard = () => {
   ];
 
   return (
-    <ul className="flex gap-8 pt-7">
+    <ul className="flex gap-8 pt-7 ">
       {statuses.map((status) => {
         const filteredTasks =
           tasks?.filter((t) => t.status === status.id) || [];
@@ -47,26 +47,32 @@ export const TaskBoard = () => {
               {filteredTasks.map((task) => (
                 <Todo
                   key={task.id}
+                  status={task.status}
                   title={task.title}
                   description={task.description}
                   assignees={task.assignees}
                   dueDate={task.dueDate}
                 />
               ))}
-              {filteredTasks.length === 1 ? (
-                <>
-                  <li className="rounded-[8px] h-54 w-65 border-dashed border-2 border-[#AAAAAA]"></li>
-                  <li className="rounded-[8px] h-54 w-65 border-dashed border-2 border-[#AAAAAA]"></li>
-                </>
-              ) : (
-                ""
-              )}
-              {filteredTasks.length === 2 ? (
-                <>
-                  <li className="rounded-[8px] h-54 w-65 border-dashed border-2 border-[#AAAAAA]"></li>
-                </>
-              ) : (
-                ""
+
+              {Array.from({ length: 3 - filteredTasks.length }).map(
+                (_, index) => (
+                  <li
+                    key={index}
+                    className="rounded-[8px] h-54 w-65 flex justify-center items-center border-dashed border-2 border-text-main-grey"
+                  >
+                    {isLoading && (
+                      <div className="flex flex-col items-center gap-2">
+                        <div className="flex items-center justify-center h-12 w-16">
+                          <Loader
+                            size={24}
+                            className="animate-spin [animation-duration:3s]"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </li>
+                )
               )}
             </ul>
           </li>
@@ -74,4 +80,4 @@ export const TaskBoard = () => {
       })}
     </ul>
   );
-};
+}

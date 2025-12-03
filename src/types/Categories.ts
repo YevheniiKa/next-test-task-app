@@ -1,2 +1,1 @@
-const Categories = ["dashboard", "settings"];
-export default Categories;
+export const Categories = ["dashboard", "setting"];
