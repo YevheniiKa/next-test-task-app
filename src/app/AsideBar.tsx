@@ -9,7 +9,7 @@ export const AsideBar = () => {
   return (
     <aside className="pt-[55px] pl-7 flex flex-col bg-white h-[100vh] sticky top-0">
       <div>
-        <Link href={`/`} className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <span className="w-8 h-8 bg-[#FF9F24] rounded-4xl flex justify-center items-center text-white text-[18px] font-medium">
             C
           </span>

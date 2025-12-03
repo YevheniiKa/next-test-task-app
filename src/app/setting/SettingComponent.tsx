@@ -99,7 +99,7 @@ border-1 border-[#CCCCCC] rounded-[8px] w-[842px] h-14 bg-white text-[#000000] p
     ${
       password.length < 4 || name.length < 4
         ? "bg-[#a7a8aa] cursor-not-allowed shadow-sm"
-        : "bg-text-bg-green cursor-pointer shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out"
+        : "bg-text-bg-green cursor-pointer shadow-md hover:shadow-[5px_5px_5px_0px_rgba(0,_0,_0,_0.2)] transition-shadow duration-300 ease-in-out"
     }`}
         onClick={handleSave}
         disabled={password.length < 4 || name.length < 4}

@@ -34,7 +34,7 @@ export default function RightBar() {
 
         <Link
           href="/"
-          className="flex justify-center items-center h-[35px] w-[272px] bg-button-red rounded-[4px] text-[12px] font-bold text-white mt-auto cursor-pointer mr-5 mb-[26px] shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out"
+          className="flex justify-center items-center h-[35px] w-[272px] bg-button-red rounded-[4px] text-[12px] font-bold text-white mt-auto cursor-pointer mr-5 mb-[26px] shadow-md hover:shadow-[5px_5px_5px_0px_rgba(0,_0,_0,_0.2)] transition-shadow duration-300 ease-in-out"
         >
           Logout
         </Link>

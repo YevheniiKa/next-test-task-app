@@ -20,7 +20,7 @@ export function NavLink({ href }: NavProps) {
       />
       <span
         className={`text-[14px] font-normal ${
-          isActive ? "text-text-bg-green" : "text - text-main-grey"
+          isActive ? "text-text-bg-green" : "text-text-main-grey"
         }`}
       >
         {href[0].toUpperCase() + href.slice(1)}
